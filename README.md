@@ -1,6 +1,6 @@
 <!-- 📌 LOGO: reemplazar la linea de abajo con tu imagen -->
 <p align="center">
-  <img src="imagenes/logo-zerodayslab.svg" width="280" alt="ZERODAYS LAB Logo">
+  <img src="https://zerodayslab.co/imagenes/zero.webp" width="280" alt="ZERODAYS LAB Logo">
 </p>
 
 <p align="center">
@@ -72,7 +72,7 @@ Para probar la versión Community:
 ```bash
 curl -sSL https://github.com/matarturo/vortex/raw/main/install.sh | sudo bash
 ---
-
+```
 ## 📄 Licencia
 
 Software propietario (Open-Core). Uso sujeto a los términos de la licencia adquirida. Ver `LICENSE` para más detalles.
