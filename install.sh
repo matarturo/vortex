@@ -47,28 +47,36 @@ echo
 
 echo "[*] Validando dependencias mínimas del sistema..."
 
-dependencies=(
+# Validar binarios estándar mediante command -v
+bin_dependencies=(
     curl
     tar
     file
     python3
-    python3-venv
-    python3-pip
 )
 
 missing_deps=()
 
-for dep in "${dependencies[@]}"; do
+for dep in "${bin_dependencies[@]}"; do
     if ! command -v "$dep" >/dev/null 2>&1; then
         missing_deps+=("$dep")
     fi
 done
 
+# Validar módulos/paquetes específicos de Python mediante dpkg o chequeo interno
+if ! dpkg-query -W -f='${Status}' python3-venv 2>/dev/null | grep -q "install ok installed"; then
+    missing_deps+=("python3-venv")
+fi
+
+if ! dpkg-query -W -f='${Status}' python3-pip 2>/dev/null | grep -q "install ok installed"; then
+    missing_deps+=("python3-pip")
+fi
+
 if [ "${#missing_deps[@]}" -gt 0 ]; then
     echo "[-] Faltan dependencias del sistema:"
     printf '    - %s\n' "${missing_deps[@]}"
     echo
-    echo "[!] Instálelas antes de continuar."
+    echo "[!] Instálelas antes de continuar:"
     echo "    apt-get update"
     echo "    apt-get install -y ${missing_deps[*]}"
     exit 1
