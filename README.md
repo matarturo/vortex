@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <h1 align="center">🛡️ VORTEX ASSESSMENT ENGINE</h1>
+  <h1 align="center">VORTEX ASSESSMENT ENGINE</h1>
 </p>
 
 <p align="center">
