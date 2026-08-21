@@ -70,7 +70,6 @@ VORTEX opera bajo un modelo **Open-Core**. El binario base es público, pero el 
 Para probar la versión Community:
 
 ```bash
-
 curl -sSL https://github.com/matarturo/vortex/raw/main/install.sh | sudo bash
 ```
 ---
