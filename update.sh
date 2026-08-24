@@ -3,7 +3,7 @@ set -euo pipefail
 
 LICENSE_FILE="/etc/vortex/license.json"
 # Ajustar a la URL real de producción o entorno de prueba de download.php
-BACKEND_URL="https://zerodayslab.co/download.php"
+BACKEND_URL="https://api.zerodayslab.co/download.php"
 INSTALL_DIR="/opt/vortex"
 BIN_PATH="${INSTALL_DIR}/vortex"
 
@@ -25,12 +25,7 @@ if [ ! -x "$BIN_PATH" ]; then
     exit 1
 fi
 
-HARDWARE_ID=$("${BIN_PATH}" --show-hwid | grep -oP '(?<=: ).*' || true)
-if [ -z "$HARDWARE_ID" ]; then
-    # Fallback por si el grep falla en algunas distribuciones
-    HARDWARE_ID=$("${BIN_PATH}" --show-hwid | awk '{print $NF}')
-fi
-
+HARDWARE_ID=$("${BIN_PATH}" --show-hwid | awk '{print $NF}')
 if [ -z "$HARDWARE_ID" ]; then
     echo "[-] No se pudo extraer el Hardware ID del equipo."
     exit 1
