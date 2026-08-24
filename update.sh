@@ -9,22 +9,21 @@ INSTALL_DIR="/opt/vortex"
 BINARY_PATH="${INSTALL_DIR}/vortex"
 API_URL="https://api.zerodayslab.co/download.php"
 
-# 1. Obtener datos de licencia local
+# 1. Obtener datos de licencia y Hardware ID desde el JSON local
 LICENSE_KEY=""
+HW_ID=""
 if [[ -f "$CONFIG_FILE" ]]; then
     LICENSE_KEY=$(jq -r '.license_key // .key // ""' "$CONFIG_FILE" 2>/dev/null || echo "")
+    HW_ID=$(jq -r '.hw_id // ""' "$CONFIG_FILE" 2>/dev/null || echo "")
 fi
 
-# 2. Obtener Hardware ID consistente (MAC / DMI / Hash)
-HW_ID=$(cat /sys/class/net/$(ip route show default | awk '/default/ {print $5}' | head -n1)/address 2>/dev/null | tr -d ':' | tr '[:lower:]' '[:upper:]' || true)
-
-if [[ -z "$HW_ID" ]]; then
-    HW_ID=$(head -n 1 /etc/machine-id 2>/dev/null || echo "UNKNOWN_HW")
+# 2. Respaldo: Si no está en el JSON, calcular Hardware ID del sistema
+if [[ -z "$HW_ID" || "$HW_ID" == "null" ]]; then
+    HW_ID=$(cat /sys/class/net/$(ip route show default | awk '/default/ {print $5}' | head -n1)/address 2>/dev/null | tr -d ':' | tr '[:lower:]' '[:upper:]' || true)
+    if [[ -z "$HW_ID" ]]; then
+        HW_ID=$(head -n 1 /etc/machine-id 2>/dev/null || echo "UNKNOWN_HW")
+    fi
 fi
-
-PLATFORM="linux-amd64"
-
-echo "[*] Solicitando actualización para hardware_id=${HW_ID}... plataforma=${PLATFORM}"
 
 # 3. Petición JSON al backend ICARUS
 PAYLOAD=$(jq -n \
