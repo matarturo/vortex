@@ -8,6 +8,7 @@ CONFIG_FILE="/etc/vortex/license.json"
 INSTALL_DIR="/opt/vortex"
 BINARY_PATH="${INSTALL_DIR}/vortex"
 API_URL="https://api.zerodayslab.co/download.php"
+PLATFORM="linux-amd64" # <--- Declararla aquí evita el error de variable no vinculada
 
 # 1. Obtener datos de licencia y Hardware ID desde el JSON local
 LICENSE_KEY=""
