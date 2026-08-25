@@ -8,7 +8,7 @@
 APP_NAME="vortex"
 INSTALL_DIR="/opt/$APP_NAME"
 SYMLINK_PATH="/usr/local/bin/$APP_NAME"
-REPO_URL="https://raw.githubusercontent.com/matarturo/vortex/main"
+REPO_URL="https://github.com/matarturo/vortex/raw/main/vortex-latest.tar.gz"
 
 # ============================================================
 # 1. VALIDAR PRIVILEGIOS
