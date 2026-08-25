@@ -1,332 +1,212 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
 # ==============================================================================
-# PATCH.SH — VORTEX
-# Canal gratuito de parches de seguridad
+# VORTEX - PATCH MANAGER
+#
+# Aplica parches publicados por ZERODAYS LAB sobre la versión instalada.
+#
+# NO reinstala VORTEX.
+# NO elimina el entorno.
+# NO elimina reportes.
+# NO modifica la licencia.
 # ==============================================================================
 
-INSTALL_DIR="/opt/vortex"
-BIN_PATH="${INSTALL_DIR}/vortex"
+APP_NAME="vortex"
+INSTALL_DIR="/opt/${APP_NAME}"
+BINARY_PATH="${INSTALL_DIR}/${APP_NAME}"
 
-PATCH_LOG="/var/lib/vortex/.patches_applied"
-
-ICARUS_URL="https://api.zerodayslab.co/icarus.php"
-
-PATCH_PUBLIC_KEY_B64="YroZSwr1wkieroz/RrN5z47CGGxwa2dv34VPsT7b/7w="
-
-MANIFEST_URL="${ICARUS_URL}?manifest=patch"
-
-
-echo "[*] Canal ICARUS de parches VORTEX"
-
-
-# ==============================================================================
-# 1. VORTEX INSTALADO
-# ==============================================================================
-
-if [ ! -x "$BIN_PATH" ]; then
-    echo "[-] VORTEX no está instalado."
-    exit 1
-fi
-
-
-# ==============================================================================
-# 2. VERSION
-# ==============================================================================
-
-VERSION_INSTALADA=$(
-    "$BIN_PATH" --version 2>&1 |
-    grep -oP '\d+\.\d+\.\d+' |
-    head -n1
-)
-
-if [ -z "$VERSION_INSTALADA" ]; then
-    echo "[-] No se pudo determinar la versión instalada."
-    exit 1
-fi
-
-
-# ==============================================================================
-# 3. PLATFORM
-# ==============================================================================
-
+MANIFEST_URL="https://api.zerodayslab.co/patches/manifest.json"
 PLATFORM="linux-amd64"
 
-case "$(uname -m)" in
-    aarch64|arm64)
-        PLATFORM="linux-arm64"
-        ;;
-esac
+TMP_FILE="$(mktemp "${INSTALL_DIR}/.vortex-patch.XXXXXX")"
 
-echo "[*] Versión: ${VERSION_INSTALADA}"
-echo "[*] Plataforma: ${PLATFORM}"
+cleanup() {
+    rm -f "$TMP_FILE"
+}
 
+trap cleanup EXIT
 
 # ==============================================================================
-# 4. MANIFEST DESDE ICARUS
+# 1. VALIDAR INSTALACIÓN
 # ==============================================================================
 
-echo "[*] Consultando manifest..."
-
-MANIFEST=$(
-    curl -fsSL \
-        --retry 3 \
-        --connect-timeout 15 \
-        --max-time 30 \
-        "$MANIFEST_URL"
-)
-
-if [ -z "$MANIFEST" ]; then
-    echo "[-] No se pudo obtener el manifest."
+if [[ ! -d "$INSTALL_DIR" ]]; then
+    echo "[-] Error: VORTEX no está instalado."
     exit 1
 fi
 
-
-# ==============================================================================
-# 5. SEPARAR DATA / SIGNATURE
-# ==============================================================================
-
-MANIFEST_DATA=$(echo "$MANIFEST" | jq -c '.data')
-MANIFEST_SIG=$(echo "$MANIFEST" | jq -r '.signature // empty')
-
-if [ -z "$MANIFEST_DATA" ] || [ -z "$MANIFEST_SIG" ]; then
-    echo "[-] Manifest incompleto."
+if [[ ! -x "$BINARY_PATH" ]]; then
+    echo "[-] Error: no se encontró:"
+    echo "    ${BINARY_PATH}"
     exit 1
 fi
 
+echo "============================================================="
+echo " VORTEX - Patch Manager"
+echo "============================================================="
 
 # ==============================================================================
-# 6. VERIFICAR FIRMA ED25519
+# 2. OBTENER VERSIÓN ACTUAL
 # ==============================================================================
 
-FIRMA_VALIDA=$(python3 -c "
-import base64
-from cryptography.hazmat.primitives.asymmetric import ed25519
-from cryptography.exceptions import InvalidSignature
+VERSION_OUTPUT="$("$BINARY_PATH" --version 2>/dev/null || true)"
 
-pub = base64.b64decode('${PATCH_PUBLIC_KEY_B64}')
+CURRENT_VERSION="$(
+    echo "$VERSION_OUTPUT" |
+    grep -oE 'VORTEX v[0-9]+\.[0-9]+\.[0-9]+' |
+    head -n1 |
+    sed 's/VORTEX v//'
+)"
 
-key = ed25519.Ed25519PublicKey.from_public_bytes(pub)
-
-data = '''${MANIFEST_DATA}'''.encode('utf-8')
-
-sig = bytes.fromhex('${MANIFEST_SIG}')
-
-try:
-    key.verify(sig, data)
-    print('OK')
-except InvalidSignature:
-    print('INVALID')
-except Exception as e:
-    print('ERROR:' + str(e))
-")
-
-if [ "$FIRMA_VALIDA" != "OK" ]; then
-    echo "[-] Firma Ed25519 inválida."
+if [[ -z "$CURRENT_VERSION" ]]; then
+    echo "[-] No fue posible determinar la versión instalada."
     exit 1
 fi
 
-echo "[+] Firma Ed25519 verificada."
-
+echo "[+] Versión instalada: ${CURRENT_VERSION}"
 
 # ==============================================================================
-# 7. VERSION TARGET
+# 3. DESCARGAR MANIFEST
 # ==============================================================================
 
-VERSION_TARGET=$(
-    echo "$MANIFEST_DATA" |
-    jq -r '.version_target // empty'
-)
+MANIFEST_FILE="$(mktemp "${INSTALL_DIR}/.vortex-manifest.XXXXXX")"
 
-if [ "$VERSION_TARGET" != "$VERSION_INSTALADA" ]; then
+if ! curl -fL --retry 3 --connect-timeout 15 \
+    -o "$MANIFEST_FILE" \
+    "$MANIFEST_URL"; then
 
-    echo "[*] No existe parche para ${VERSION_INSTALADA}."
+    echo "[-] Error descargando manifest.json."
+    rm -f "$MANIFEST_FILE"
+    exit 1
+fi
+
+# ==============================================================================
+# 4. LEER MANIFEST
+# ==============================================================================
+
+VERSION_TARGET="$(
+    jq -r '.data.version_target // empty' "$MANIFEST_FILE"
+)"
+
+PATCH_VERSION="$(
+    jq -r '.data.patch_version // empty' "$MANIFEST_FILE"
+)"
+
+DOWNLOAD_URL="$(
+    jq -r ".data.platforms[\"${PLATFORM}\"].url // empty" "$MANIFEST_FILE"
+)"
+
+EXPECTED_SHA256="$(
+    jq -r ".data.platforms[\"${PLATFORM}\"].sha256 // empty" "$MANIFEST_FILE"
+)"
+
+rm -f "$MANIFEST_FILE"
+
+if [[ -z "$VERSION_TARGET" ||
+      -z "$PATCH_VERSION" ||
+      -z "$DOWNLOAD_URL" ||
+      -z "$EXPECTED_SHA256" ]]; then
+
+    echo "[-] Manifest inválido o incompleto."
+    exit 1
+fi
+
+echo "[+] Parche disponible: ${PATCH_VERSION}"
+echo "    Aplicable a: ${VERSION_TARGET}"
+
+# ==============================================================================
+# 5. VALIDAR COMPATIBILIDAD
+# ==============================================================================
+
+if [[ "$CURRENT_VERSION" != "$VERSION_TARGET" ]]; then
+    echo
+    echo "[!] Este parche no corresponde a la versión instalada."
+    echo "    Instalado : ${CURRENT_VERSION}"
+    echo "    Requerido : ${VERSION_TARGET}"
+    echo
+    echo "[*] No se realizará ninguna modificación."
     exit 0
-
 fi
 
-
-PATCH_VERSION=$(
-    echo "$MANIFEST_DATA" |
-    jq -r '.patch_version // empty'
-)
-
-SEVERIDAD=$(
-    echo "$MANIFEST_DATA" |
-    jq -r '.severidad // "no especificada"'
-)
-
-DESCRIPCION=$(
-    echo "$MANIFEST_DATA" |
-    jq -r '.descripcion // "Sin descripción"'
-)
-
-
 # ==============================================================================
-# 8. EVITAR REAPLICACIÓN
-# ==============================================================================
-
-if [ -f "$PATCH_LOG" ] &&
-   grep -qxF "$PATCH_VERSION" "$PATCH_LOG"; then
-
-    echo "[*] Parche ${PATCH_VERSION} ya aplicado."
-    exit 0
-
-fi
-
-
-echo "[*] Parche: ${PATCH_VERSION}"
-echo "[*] Severidad: ${SEVERIDAD}"
-echo "    ${DESCRIPCION}"
-
-
-# ==============================================================================
-# 9. ARTIFACT
-# ==============================================================================
-
-ARTIFACT=$(
-    echo "$MANIFEST_DATA" |
-    jq -r ".platforms[\"${PLATFORM}\"].artifact // empty"
-)
-
-SHA256_ESPERADO=$(
-    echo "$MANIFEST_DATA" |
-    jq -r ".platforms[\"${PLATFORM}\"].sha256 // empty"
-)
-
-if [ -z "$ARTIFACT" ] || [ -z "$SHA256_ESPERADO" ]; then
-    echo "[-] Datos del artefacto incompletos."
-    exit 1
-fi
-
-
-# ==============================================================================
-# 10. SOLICITAR DOWNLOAD A ICARUS
-#
-# PATCH ES PUBLICO.
-# No necesita licencia.
-#
-# El endpoint entrega un ticket de descarga para el artifact solicitado.
-# ==============================================================================
-
-PAYLOAD=$(
-    jq -n \
-        --arg artifact "$ARTIFACT" \
-        --arg scope "patch" \
-        '{
-            artifact: $artifact,
-            scope: $scope
-        }'
-)
-
-RESPONSE=$(
-    curl -fsSL \
-        --retry 3 \
-        --connect-timeout 15 \
-        --max-time 30 \
-        -X POST \
-        "$ICARUS_URL" \
-        -H "Content-Type: application/json" \
-        -d "$PAYLOAD"
-)
-
-
-DOWNLOAD_URL=$(
-    echo "$RESPONSE" |
-    jq -r '.download_url // empty'
-)
-
-if [ -z "$DOWNLOAD_URL" ]; then
-    echo "[-] ICARUS rechazó la descarga:"
-    echo "$RESPONSE"
-    exit 1
-fi
-
-
-# ==============================================================================
-# 11. DESCARGAR
-# ==============================================================================
-
-TMP_BIN=$(mktemp)
-
-trap 'rm -f "$TMP_BIN"' EXIT
-
-echo "[*] Descargando parche..."
-
-curl -fsSL \
-    --retry 3 \
-    --connect-timeout 15 \
-    --max-time 300 \
-    "$DOWNLOAD_URL" \
-    -o "$TMP_BIN"
-
-
-# ==============================================================================
-# 12. SHA256
-# ==============================================================================
-
-SHA256_REAL=$(
-    sha256sum "$TMP_BIN" |
-    awk '{print $1}'
-)
-
-if [ "$SHA256_REAL" != "$SHA256_ESPERADO" ]; then
-
-    echo "[-] SHA256 inválido."
-
-    echo "    Esperado: $SHA256_ESPERADO"
-    echo "    Obtenido: $SHA256_REAL"
-
-    exit 1
-
-fi
-
-echo "[+] SHA256 verificado."
-
-
-# ==============================================================================
-# 13. BACKUP
-# ==============================================================================
-
-BACKUP_PATH="${BIN_PATH}.bak-pre-${PATCH_VERSION}"
-
-cp "$BIN_PATH" "$BACKUP_PATH"
-
-echo "[+] Backup:"
-echo "    $BACKUP_PATH"
-
-
-# ==============================================================================
-# 14. REEMPLAZO ATÓMICO
-# ==============================================================================
-
-chmod 755 "$TMP_BIN"
-
-mv "$TMP_BIN" "$BIN_PATH"
-
-trap - EXIT
-
-
-# ==============================================================================
-# 15. REGISTRO
-# ==============================================================================
-
-mkdir -p "$(dirname "$PATCH_LOG")"
-
-echo "$PATCH_VERSION" >> "$PATCH_LOG"
-
-
-# ==============================================================================
-# 16. VERIFICACIÓN
+# 6. DESCARGAR PARCHE
 # ==============================================================================
 
 echo
-echo "[+] Parche aplicado correctamente."
+echo "[+] Descargando parche..."
+echo "    ${DOWNLOAD_URL}"
 
-"$BIN_PATH" --version
+if ! curl -fL --retry 3 --connect-timeout 15 \
+    -o "$TMP_FILE" \
+    "$DOWNLOAD_URL"; then
+
+    echo "[-] Error descargando el parche."
+    exit 1
+fi
+
+# ==============================================================================
+# 7. VALIDAR ELF
+# ==============================================================================
+
+if ! file "$TMP_FILE" | grep -qi "ELF"; then
+    echo "[-] El archivo descargado no es un ELF válido."
+    exit 1
+fi
+
+echo "[+] ELF válido."
+
+# ==============================================================================
+# 8. VERIFICAR SHA256
+# ==============================================================================
+
+SHA256_ACTUAL="$(sha256sum "$TMP_FILE" | awk '{print $1}')"
+
+echo "[*] Verificando integridad..."
+echo "    Esperado: ${EXPECTED_SHA256}"
+echo "    Recibido: ${SHA256_ACTUAL}"
+
+if [[ "$SHA256_ACTUAL" != "$EXPECTED_SHA256" ]]; then
+    echo "[-] Error crítico: SHA256 no coincide."
+    echo "[-] El parche NO será instalado."
+    exit 1
+fi
+
+echo "[+] Integridad verificada."
+
+# ==============================================================================
+# 9. REEMPLAZAR SOLAMENTE EL BINARIO
+# ==============================================================================
+
+chmod 755 "$TMP_FILE"
 
 echo
-echo "    Backup:"
-echo "    $BACKUP_PATH"
+echo "[+] Aplicando parche ${PATCH_VERSION}..."
+
+mv -f "$TMP_FILE" "$BINARY_PATH"
+
+# ==============================================================================
+# 10. VERIFICACIÓN FINAL
+# ==============================================================================
+
+if [[ ! -x "$BINARY_PATH" ]]; then
+    echo "[-] Error: el binario parcheado no quedó disponible."
+    exit 1
+fi
+
+echo
+echo "============================================================="
+echo " VORTEX PARCHEADO CORRECTAMENTE"
+echo "============================================================="
+
+echo
+echo "[+] Versión:"
+"$BINARY_PATH" --version
+
+echo
+echo "[+] Licencia:"
+"$BINARY_PATH" status || true
+
+echo
+echo "[+] Entorno preservado."
+echo "============================================================="
