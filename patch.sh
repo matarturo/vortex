@@ -16,7 +16,7 @@ APP_NAME="vortex"
 INSTALL_DIR="/opt/${APP_NAME}"
 BINARY_PATH="${INSTALL_DIR}/${APP_NAME}"
 
-MANIFEST_URL="https://api.zerodaylab.co/patches/manifest.json"
+MANIFEST_URL="https://api.zerodayslab.co/patches/manifest.json"
 PLATFORM="linux-amd64"
 
 TMP_FILE="$(mktemp "${INSTALL_DIR}/.vortex-patch.XXXXXX")"
@@ -103,10 +103,6 @@ EXPECTED_SHA256="$(
 
 rm -f "$MANIFEST_FILE"
 
-# ==============================================================================
-# 5. VALIDAR MANIFEST
-# ==============================================================================
-
 if [[ -z "$VERSION_TARGET" ||
       -z "$PATCH_VERSION" ||
       -z "$ARTIFACT" ||
@@ -117,7 +113,7 @@ if [[ -z "$VERSION_TARGET" ||
 fi
 
 # ==============================================================================
-# 6. VALIDAR NOMBRE DEL ARTEFACTO
+# 4.1 VALIDAR NOMBRE DEL ARTEFACTO
 # ==============================================================================
 
 if [[ ! "$ARTIFACT" =~ ^vortex-patch-${VERSION_TARGET}-p[0-9]+-${PLATFORM}$ ]]; then
@@ -126,14 +122,14 @@ if [[ ! "$ARTIFACT" =~ ^vortex-patch-${VERSION_TARGET}-p[0-9]+-${PLATFORM}$ ]]; 
     exit 1
 fi
 
-DOWNLOAD_URL="https://api.zerodaylab.co/patches/${ARTIFACT}"
+DOWNLOAD_URL="https://api.zerodayslab.co/patches/${ARTIFACT}"
 
 echo "[+] Parche disponible: ${PATCH_VERSION}"
 echo "    Aplicable a: ${VERSION_TARGET}"
 echo "    Artefacto: ${ARTIFACT}"
 
 # ==============================================================================
-# 7. VALIDAR COMPATIBILIDAD
+# 5. VALIDAR COMPATIBILIDAD
 # ==============================================================================
 
 if [[ "$CURRENT_VERSION" != "$VERSION_TARGET" ]]; then
@@ -147,7 +143,7 @@ if [[ "$CURRENT_VERSION" != "$VERSION_TARGET" ]]; then
 fi
 
 # ==============================================================================
-# 8. DESCARGAR PARCHE
+# 6. DESCARGAR PARCHE
 # ==============================================================================
 
 echo
@@ -163,7 +159,7 @@ if ! curl -fL --retry 3 --connect-timeout 15 \
 fi
 
 # ==============================================================================
-# 9. VALIDAR ELF
+# 7. VALIDAR ELF
 # ==============================================================================
 
 if ! file "$TMP_FILE" | grep -qi "ELF"; then
@@ -174,7 +170,7 @@ fi
 echo "[+] ELF válido."
 
 # ==============================================================================
-# 10. VERIFICAR SHA256
+# 8. VERIFICAR SHA256
 # ==============================================================================
 
 SHA256_ACTUAL="$(sha256sum "$TMP_FILE" | awk '{print $1}')"
@@ -192,7 +188,7 @@ fi
 echo "[+] Integridad verificada."
 
 # ==============================================================================
-# 11. REEMPLAZAR SOLAMENTE EL BINARIO
+# 9. REEMPLAZAR SOLAMENTE EL BINARIO
 # ==============================================================================
 
 chmod 755 "$TMP_FILE"
@@ -203,7 +199,7 @@ echo "[+] Aplicando parche ${PATCH_VERSION}..."
 mv -f "$TMP_FILE" "$BINARY_PATH"
 
 # ==============================================================================
-# 12. VERIFICACIÓN FINAL
+# 10. VERIFICACIÓN FINAL
 # ==============================================================================
 
 if [[ ! -x "$BINARY_PATH" ]]; then
