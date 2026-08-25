@@ -94,19 +94,6 @@ PATCH_VERSION="$(
     jq -r '.data.patch_version // empty' "$MANIFEST_FILE"
 )"
 
-# ==============================================================================
-# 4.1 EVITAR REAPLICACIÓN DEL MISMO PARCHE
-# ==============================================================================
-
-if [[ -f "$PATCH_LOG" ]] &&
-   grep -qxF "$PATCH_VERSION" "$PATCH_LOG"; then
-
-    echo
-    echo "[*] El parche ${PATCH_VERSION} ya está aplicado."
-    echo "[*] No se realizará ninguna modificación."
-    exit 0
-fi
-
 ARTIFACT="$(
     jq -r ".data.platforms[\"${PLATFORM}\"].artifact // empty" "$MANIFEST_FILE"
 )"
@@ -125,6 +112,20 @@ if [[ -z "$VERSION_TARGET" ||
     echo "[-] Manifest inválido o incompleto."
     exit 1
 fi
+
+# ==============================================================================
+# 4.1 EVITAR REAPLICACIÓN DEL MISMO PARCHE
+# ==============================================================================
+
+if [[ -f "$PATCH_LOG" ]] &&
+   grep -qxF "$PATCH_VERSION" "$PATCH_LOG"; then
+
+    echo
+    echo "[*] El parche ${PATCH_VERSION} ya está aplicado."
+    echo "[*] No se realizará ninguna modificación."
+    exit 0
+fi
+
 
 # ==============================================================================
 # 4.1 VALIDAR NOMBRE DEL ARTEFACTO
