@@ -15,6 +15,7 @@ set -euo pipefail
 APP_NAME="vortex"
 INSTALL_DIR="/opt/${APP_NAME}"
 BINARY_PATH="${INSTALL_DIR}/${APP_NAME}"
+PATCH_LOG="/var/lib/vortex/.patches_applied"
 
 MANIFEST_URL="https://api.zerodayslab.co/patches/manifest.json"
 PLATFORM="linux-amd64"
@@ -92,6 +93,19 @@ VERSION_TARGET="$(
 PATCH_VERSION="$(
     jq -r '.data.patch_version // empty' "$MANIFEST_FILE"
 )"
+
+# ==============================================================================
+# 4.1 EVITAR REAPLICACIÓN DEL MISMO PARCHE
+# ==============================================================================
+
+if [[ -f "$PATCH_LOG" ]] &&
+   grep -qxF "$PATCH_VERSION" "$PATCH_LOG"; then
+
+    echo
+    echo "[*] El parche ${PATCH_VERSION} ya está aplicado."
+    echo "[*] No se realizará ninguna modificación."
+    exit 0
+fi
 
 ARTIFACT="$(
     jq -r ".data.platforms[\"${PLATFORM}\"].artifact // empty" "$MANIFEST_FILE"
@@ -197,6 +211,16 @@ echo
 echo "[+] Aplicando parche ${PATCH_VERSION}..."
 
 mv -f "$TMP_FILE" "$BINARY_PATH"
+
+# ==============================================================================
+# 9.1 REGISTRAR PARCHE APLICADO
+# ==============================================================================
+
+mkdir -p "$(dirname "$PATCH_LOG")"
+
+if ! grep -qxF "$PATCH_VERSION" "$PATCH_LOG" 2>/dev/null; then
+    echo "$PATCH_VERSION" >> "$PATCH_LOG"
+fi
 
 # ==============================================================================
 # 10. VERIFICACIÓN FINAL
