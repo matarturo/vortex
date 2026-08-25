@@ -128,7 +128,7 @@ fi
 
 
 # ==============================================================================
-# 4.1 VALIDAR NOMBRE DEL ARTEFACTO
+# 4.2 VALIDAR NOMBRE DEL ARTEFACTO
 # ==============================================================================
 
 if [[ ! "$ARTIFACT" =~ ^vortex-patch-${VERSION_TARGET}-p[0-9]+-${PLATFORM}$ ]]; then
