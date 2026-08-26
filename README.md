@@ -370,6 +370,17 @@ VORTEX está disponible en diferentes ediciones para adaptarse a profesionales, 
 
 > **PMA — Plan de Mantenimiento Anual:** proporciona acceso a nuevas versiones y actualizaciones de seguridad conforme a los términos comerciales aplicables.
 
+> La disponibilidad, características y condiciones de cada producto pueden consultarse en la tienda oficial de **Gumroad**.
+
+**👉 [Visitar tienda y adquirir una licencia](https://arturomata.gumroad.com/)**
+
+---
+
+# 🔑 Activación de VORTEX
+```
+vortex attach <SU_LICENSE_KEY_O_TOKEN>
+```
+
 ---
 # 🧩 Ecosistema ZERODAYS LAB
 
