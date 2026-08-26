@@ -343,14 +343,14 @@ Gumroad proporciona un entorno de compra seguro y permite utilizar los métodos 
   <strong>Compra de forma segura · Diferentes métodos de pago · Entrega digital</strong>
 </p>
 
-```
+
 |     Edición    | Precio       | Pago         | Asientos / Instalaciones   | Diseñada para               |
 |----------------|-------------:|--------------|---------------------------:|-----------------------------|
 | **Community**  | **$0 USD**   | Evaluación   | **1 equipo**               | Pruebas y evaluación        |
 | **PRO**        | **$99 USD**  | **Unico**    | **1 equipo**               | Profesionales y consultores |
 | **TEAM**       | **$349 USD** | **Unico**    | **Hasta 5 equipos**        | Equipos de seguridad        |
 | **Enterprise** | **$999 USD** | **Anual**    | **Hasta 50 equipos**       | Organizaciones grandes      |
-```
+
 ### ⭐ PRO — $99 USD
 
 - Escaneos ilimitados
