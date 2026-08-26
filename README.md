@@ -66,6 +66,9 @@ curl -sSL https://github.com/matarturo/vortex/raw/main/install.sh | sudo bash
 Después de la instalación:
 
 ```bash
+vortex --version
+```
+```bash
 vortex --help
 ```
 
@@ -302,6 +305,29 @@ Una evaluación típica con VORTEX sigue este flujo:
               ▼        ▼        ▼
             HTML      JSON     SARIF
 ```
+
+# 🧩 Ecosistema ZERODAYS LAB
+
+VORTEX forma parte del ecosistema de herramientas desarrollado por **ZERODAYS LAB**.
+
+```text
+                    ZERODAYS LAB
+                         │
+          ┌──────────────┼──────────────┐
+          │              │              │
+          ▼              ▼              ▼
+     CEREBELLUM       VORTEX          ICARUS
+     Licensing       Security       Distribution
+       Core          Engine            Core
+          │              │              │
+          │              ▼              │
+          │        Security             │
+          │        Assessment           │
+          │              │              │
+          └──────────────┼──────────────┘
+                         │
+                  Secure Ecosystem
+
 
 ---
 
