@@ -41,14 +41,16 @@ VORTEX combina **DAST (Dynamic Application Security Testing)** con descubrimient
 
 Está diseñado para evaluar aplicaciones web modernas, incluyendo aquellas construidas como **Single Page Applications (SPA)** con tecnologías como:
 
-* React
-* Vue
-* Angular
-* JavaScript-heavy applications
+- React
+- Vue
+- Angular
+- JavaScript-heavy applications
 
 VORTEX puede descubrir rutas y recursos de una aplicación, analizar recursos JavaScript y ejecutar pruebas de seguridad sobre las superficies descubiertas.
 
 > **Las aplicaciones web cambiaron. VORTEX fue diseñado para evaluarlas.**
+
+**Assess. Discover. Secure.**
 
 ---
 
@@ -61,14 +63,13 @@ Ejecuta:
 ```bash
 curl -sSL https://github.com/matarturo/vortex/raw/main/install.sh | sudo bash
 ```
-
 Después de la instalación:
 
 ```bash
 vortex --help
 ```
 
-**No necesitas instalar Python, pip ni configurar un entorno de desarrollo.**
+**No necesitas instalar configurar un entorno de desarrollo.**
 
 La distribución Community se entrega como una aplicación Linux empaquetada.
 
@@ -89,6 +90,11 @@ Entornos objetivo:
 * Otras distribuciones Linux 64-bit compatibles
 
 ---
+
+
+**Ojo:** si el repositorio no es exactamente `matarturo/vortex`, cambia esa URL por la real.
+
+### 3. ¿Por qué VORTEX?
 
 # 🧭 ¿Por qué VORTEX?
 
@@ -203,64 +209,63 @@ Esto permite utilizar VORTEX en:
 
 La edición **Community** está diseñada para que desarrolladores y profesionales de seguridad puedan evaluar VORTEX antes de adquirir una licencia comercial.
 
-| Capacidad             |  Community  |
-| --------------------- | :---------: |
-| Precio                |  **$0 USD** |
-| Periodo de evaluación |  **7 días** |
-| Escaneos              | **Hasta 3** |
-| Self-Hosted           |      ✅      |
-| SPA Discovery         |      ✅      |
-| JavaScript Analysis   |      ✅      |
-| Security Assessment   |      ✅      |
-| HTML Reports          |      ✅      |
-| JSON Reports          |      ✅      |
-| SARIF                 |      ✅      |
-| Soporte comercial     |      —      |
+| Capacidad | Community |
+|---|---:|
+| Precio | **$0 USD** |
+| Periodo de evaluación | **7 días** |
+| Escaneos | **Hasta 3** |
+| Self-Hosted | ✅ |
+| SPA Discovery | ✅ |
+| JavaScript Analysis | ✅ |
+| Security Assessment | ✅ |
+| HTML Reports | ✅ |
+| JSON Reports | ✅ |
+| SARIF | ✅ |
+| Soporte comercial | — |
 
 ### Community está pensada para:
 
-* 👨‍💻 Desarrolladores
-* 🛡️ Profesionales de ciberseguridad
-* 🔬 Security Researchers
-* 🎓 Estudiantes
-* 🕵️ Pentesters
-* ⚙️ Profesionales DevSecOps
-* 🏢 Equipos que quieran evaluar VORTEX
+- 👨‍💻 Desarrolladores
+- 🛡️ Profesionales de ciberseguridad
+- 🔬 Security Researchers
+- 🎓 Estudiantes
+- 🕵️ Pentesters
+- ⚙️ Profesionales DevSecOps
+- 🏢 Equipos que quieran evaluar VORTEX
 
 **No necesitas tarjeta de crédito para comenzar la evaluación.**
-
 ---
 
 # 💼 Ediciones comerciales
 
 Cuando necesites eliminar las restricciones de evaluación:
 
-| Edición        |       Precio | Diseñada para        |
-| -------------- | -----------: | -------------------- |
-| **Community**  |   **$0 USD** | Evaluación           |
-| **PRO**        |  **$99 USD** | Profesionales        |
-| **TEAM**       | **$349 USD** | Equipos de seguridad |
-| **Enterprise** | **$999 USD** | Organizaciones       |
+| Edición | Precio | Diseñada para |
+|---|---:|---|
+| **Community** | **$0 USD** | Evaluación |
+| **PRO** | **$99 USD** | Profesionales |
+| **TEAM** | **$349 USD** | Equipos de seguridad |
+| **Enterprise** | **$999 USD** | Organizaciones |
 
 ### PRO — $99 USD
 
-* Escaneos ilimitados
-* 1 instalación activa
-* Reportes completos
-* Soporte comercial
+- Escaneos ilimitados
+- 1 instalación activa
+- Reportes completos
+- Soporte comercial
 
 ### TEAM — $349 USD
 
-* Escaneos ilimitados
-* Hasta 5 instalaciones activas
-* Soporte prioritario
+- Escaneos ilimitados
+- Hasta 5 instalaciones activas
+- Soporte prioritario
 
 ### Enterprise — $999 USD
 
-* Escaneos ilimitados
-* Hasta 50 instalaciones activas
-* Soporte empresarial
-* PMA incluido
+- Escaneos ilimitados
+- Hasta 50 instalaciones activas
+- Soporte empresarial
+- PMA incluido
 
 > **PMA — Plan de Mantenimiento Anual:** proporciona acceso a nuevas versiones y actualizaciones de seguridad conforme a los términos comerciales aplicables.
 
@@ -380,28 +385,47 @@ El usuario es responsable de garantizar que sus actividades de evaluación cumpl
 
 ¿Encontraste un problema?
 
-Abre un Issue:
-
-**https://github.com/matarturo/vortex/issues**
+Abre un Issue en el repositorio.
 
 Al reportar un problema incluye:
 
-* Distribución Linux
-* Versión de VORTEX
-* Comando ejecutado
-* Mensaje de error relevante
-* Pasos para reproducir el problema
+- Distribución Linux
+- Versión de VORTEX
+- Comando ejecutado
+- Mensaje de error relevante
+- Pasos para reproducir el problema
 
 ### ⚠️ No publiques información sensible
 
 Nunca incluyas en un Issue:
 
-* Contraseñas
-* API Keys
-* Tokens
-* Cookies
-* Credenciales
-* Datos privados de aplicaciones
+- Contraseñas
+- API Keys
+- Tokens
+- Cookies
+- Credenciales
+- Datos privados de aplicaciones
+
+---
+
+# 🌐 ZERODAYS LAB
+
+**VORTEX Assessment Engine** es desarrollado por:
+
+**ZERODAYS LAB**  
+*Research & Development in Cybersecurity*
+
+🌐 https://zerodayslab.co
+
+### Soporte comercial
+
+Para consultas comerciales, licenciamiento o asistencia relacionada con el producto:
+
+**arturo@zerodayslab.co**
+
+Para contacto personal:
+
+**arturo.mata@gmail.com**
 
 ---
 
@@ -409,13 +433,10 @@ Nunca incluyas en un Issue:
 
 Si pruebas VORTEX Community y consideras que el proyecto puede ser útil:
 
-### ⭐ Dale una Star al repositorio
-
-### 🐛 Reporta problemas
-
-### 💬 Comparte tu experiencia
-
-### 🔀 Contribuye con ideas
+- ⭐ Dale una Star al repositorio
+- 🐛 Reporta problemas
+- 💬 Comparte tu experiencia
+- 🔀 Contribuye con ideas
 
 Tu feedback ayuda a definir el futuro de VORTEX.
 
