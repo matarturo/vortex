@@ -195,8 +195,6 @@ Una evaluación típica con VORTEX sigue este flujo:
             HTML      JSON     SARIF
 ```
 
-### 3. ¿Por qué VORTEX?
-
 # 🧭 ¿Por qué VORTEX?
 
 Las aplicaciones web modernas ya no funcionan como las aplicaciones web tradicionales.
