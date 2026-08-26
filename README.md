@@ -87,11 +87,6 @@ VORTEX utiliza una arquitectura **self-hosted**, diseñada para ejecutarse dentr
 
 ---
 
-# Añadir sistemas Linux validados
-
-Esta información es buena porque aumenta la confianza en el instalador.
-
-
 # 🖥️ Sistemas Linux validados
 ```
 VORTEX ha sido probado por ZERODAYS LAB en los siguientes entornos:
@@ -160,7 +155,9 @@ vortex --local --http-port
 Revisar el reporte
 ```
 
+```bash
 ls -lah /opt/vortex/reporte/
+```
 
 **No necesitas instalar configurar un entorno de desarrollo.**
 
