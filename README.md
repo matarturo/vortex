@@ -327,8 +327,6 @@ La edición **Community** está diseñada para que desarrolladores y profesional
 
 # 💼 Ediciones comerciales
 
-VORTEX está disponible en diferentes ediciones para adaptarse a profesionales, consultores, equipos de seguridad y organizaciones.
-
 # 🛒 Adquirir productos y licencias
 
 ¿Quieres llevar VORTEX más allá de la edición Community?
