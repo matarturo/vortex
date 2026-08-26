@@ -334,6 +334,24 @@ La edición **Community** está diseñada para que desarrolladores y profesional
 
 VORTEX está disponible en diferentes ediciones para adaptarse a profesionales, consultores, equipos de seguridad y organizaciones.
 
+# 🛒 Adquirir productos y licencias
+
+¿Quieres llevar VORTEX más allá de la edición Community?
+
+La **tienda oficial de ZERODAYS LAB en Gumroad** es el punto de adquisición de nuestras herramientas, licencias y productos digitales.
+
+Gumroad proporciona un entorno de compra seguro y permite utilizar los métodos de pago disponibles para tu región y producto, incluyendo **tarjetas de crédito/débito y PayPal**, cuando están habilitados. :contentReference[oaicite:1]{index=1}
+
+<p align="center">
+  <a href="https://arturomata.gumroad.com/">
+    <img src="https://img.shields.io/badge/🛒%20TIENDA%20OFICIAL-ZERODAYS%20LAB%20·%20GUMROAD-6f2cff?style=for-the-badge" alt="Tienda oficial ZERODAYS LAB en Gumroad">
+  </a>
+</p>
+
+<p align="center">
+  <strong>Compra de forma segura · Diferentes métodos de pago · Entrega digital</strong>
+</p>
+
 ```
 |     Edición     |     Precio     | Diseñada para               |
 |-----------------|---------------:|-----------------------------|
@@ -370,9 +388,15 @@ VORTEX está disponible en diferentes ediciones para adaptarse a profesionales, 
 
 > **PMA — Plan de Mantenimiento Anual:** proporciona acceso a nuevas versiones y actualizaciones de seguridad conforme a los términos comerciales aplicables.
 
-> La disponibilidad, características y condiciones de cada producto pueden consultarse en la tienda oficial de **Gumroad**.
+### 🛍️ Visita nuestra tienda
 
-**👉 [Visitar tienda y adquirir una licencia](https://arturomata.gumroad.com/)**
+<p align="center">
+  <a href="https://arturomata.gumroad.com/">
+    <strong>👉 Visitar la tienda oficial de ZERODAYS LAB</strong>
+  </a>
+</p>
+
+---
 
 ---
 
