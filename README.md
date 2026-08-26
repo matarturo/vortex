@@ -325,9 +325,7 @@ La edición **Community** está diseñada para que desarrolladores y profesional
 **No necesitas tarjeta de crédito para comenzar la evaluación.**
 ---
 
-# 💼 Ediciones comerciales
-
-# 🛒 Adquirir productos y licencias
+# 🛒 Adquirir productos y licencias comerciales de **VORTEX**
 
 ¿Quieres llevar VORTEX más allá de la edición Community?
 
@@ -346,12 +344,12 @@ Gumroad proporciona un entorno de compra seguro y permite utilizar los métodos 
 </p>
 
 ```
-|     Edición     |     Precio     | Diseñada para               |
-|-----------------|---------------:|-----------------------------|
-| **Community**   |   **$0 USD**   | Pruebas y evaluación        |
-| **PRO**         |   **$99 USD**  | Profesionales y consultores |
-| **TEAM**        | **$349 USD**   | Equipos de seguridad        |
-| **Enterprise**  | **$999 USD**   | Organizaciones grandes      |
+|     Edición    | Precio       | Pago         | Asientos / Instalaciones   | Diseñada para               |
+|----------------|-------------:|--------------|---------------------------:|-----------------------------|
+| **Community**  | **$0 USD**   | Evaluación   | **1 equipo**               | Pruebas y evaluación        |
+| **PRO**        | **$99 USD**  | **Unico**    | **1 equipo**               | Profesionales y consultores |
+| **TEAM**       | **$349 USD** | **Unico**    | **Hasta 5 equipos**        | Equipos de seguridad        |
+| **Enterprise** | **$999 USD** | **Anual**    | **Hasta 50 equipos**       | Organizaciones grandes      |
 ```
 ### ⭐ PRO — $99 USD
 
@@ -395,7 +393,11 @@ Gumroad proporciona un entorno de compra seguro y permite utilizar los métodos 
 ```
 vortex attach <SU_LICENSE_KEY_O_TOKEN>
 ```
+# ✨ Comprobar el estado de la licencia, la instalación y la activación ejecutando:
 
+```
+vortex status
+```
 ---
 # 🧩 Ecosistema ZERODAYS LAB
 
