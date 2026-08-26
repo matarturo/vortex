@@ -398,8 +398,6 @@ Gumroad proporciona un entorno de compra seguro y permite utilizar los métodos 
 
 ---
 
----
-
 # 🔑 Activación de VORTEX
 ```
 vortex attach <SU_LICENSE_KEY_O_TOKEN>
