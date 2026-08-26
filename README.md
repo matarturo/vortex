@@ -490,15 +490,6 @@ Nunca incluyas en un Issue:
 
 ---
 
-
-
-**VORTEX Assessment Engine** es desarrollado por:
-
-# 🌐 ZERODAYS LAB
-*Research & Development in Cybersecurity*
-
-🌐 https://zerodayslab.co
-
 ### 📬 Contacto Soporte comercial
 
 Para consultas comerciales, licenciamiento o asistencia relacionada con el producto:
