@@ -91,18 +91,19 @@ VORTEX utiliza una arquitectura **self-hosted**, diseñada para ejecutarse dentr
 
 Esta información es buena porque aumenta la confianza en el instalador.
 
-```markdown
-# 🖥️ Sistemas Linux validados
 
+# 🖥️ Sistemas Linux validados
+```
 VORTEX ha sido probado por ZERODAYS LAB en los siguientes entornos:
 
-| Sistema | Versiones | Estado |
-|---|---|---|
-| Ubuntu Server | 22.04 / 24.04 LTS | ✅ Validado |
-| Debian | 12 / 13 | ✅ Validado |
-| Rocky Linux | 9 / 10.2 | ✅ Validado |
-| RHEL | 10.2 | ✅ Validado |
+|           Sistema               |      Versiones    |    Estado     |
+|---------------------------------|-------------------|---------------|
+| Ubuntu Server                   | 22.04 / 24.04 LTS | ✅ Validado  |
+| Debian                          |    12 / 13        | ✅ Validado  |
+| Rocky Linux                     |     9 / 10.2      | ✅ Validado  |
+| Red hat Entreprise Linux (RHEL) |      10.2         | ✅ Validado  |
 
+```
 ### Recomendación
 
 Para una instalación nueva recomendamos:
@@ -119,7 +120,7 @@ Las pruebas cubren instalación, ejecución del motor, gestión de licencias y a
 
 # ⚡ Instalación rápida
 
-¿Quieres probar VORTEX Community?
+¿Quieres probar VORTEX Community?  **No necesitas tarjeta de crédito para comenzar la evaluación.**
 
 Ejecuta en distribuiciones Ubuntu/Debian:
 
@@ -196,7 +197,6 @@ Una evaluación típica con VORTEX sigue este flujo:
               ▼        ▼        ▼
             HTML      JSON     SARIF
 ```
-
 
 ### 3. ¿Por qué VORTEX?
 
@@ -307,29 +307,19 @@ Esto permite utilizar VORTEX en:
 
 ---
 
-# 🧪 Community Edition — GRATIS
-
-## Empieza con VORTEX por $0 USD
+## 🆓 Community Edition — GRATIS    **Empieza con VORTEX por $0 USD**
 
 La edición **Community** está diseñada para que desarrolladores y profesionales de seguridad puedan evaluar VORTEX antes de adquirir una licencia comercial.
 
-| Capacidad | Community |
-|---|---:|
-| Precio | **$0 USD** |
-| Periodo de evaluación | **7 días** |
-| Escaneos | **Hasta 10** |
-| Self-Hosted | ✅ |
-| SPA Discovery | ✅ |
-| JavaScript Analysis | ✅ |
-| Security Assessment | ✅ |
-| HTML Reports | ✅ |
-| JSON Reports | ✅ |
-| SARIF | ✅ |
-| Soporte comercial | — |
+- 10 escaneos / 7 días
+- SPA Discovery         ✅
+- Reportes HTML y JSON  ✅
+- Reportes SARIF        ❌
+- Soporte por correo electronico: <72 horas
 
 ### Community está pensada para:
 
-- 👨‍💻 Desarrolladores
+- 👨‍💻 Desarrolladores web
 - 🛡️ Profesionales de ciberseguridad
 - 🔬 Security Researchers
 - 🎓 Estudiantes
@@ -344,28 +334,21 @@ La edición **Community** está diseñada para que desarrolladores y profesional
 
 VORTEX está disponible en diferentes ediciones para adaptarse a profesionales, consultores, equipos de seguridad y organizaciones.
 
-| Edición | Precio | Diseñada para |
-|---|---:|---|
-| **Community** | **$0 USD** | Pruebas y evaluación |
-| **PRO** | **$99 USD** | Profesionales y consultores |
-| **TEAM** | **$349 USD** | Equipos de seguridad |
-| **Enterprise** | **$999 USD** | Organizaciones grandes |
-
-### 🆓 Community
-
-- 3 escaneos / 7 días
-- Reportes HTML y JSON
-- SPA Discovery básico
-- Reportes SARIF
-- Soporte por correo: 72 horas
-
+```
+|     Edición     |     Precio     | Diseñada para               |
+|-----------------|---------------:|-----------------------------|
+| **Community**   |   **$0 USD**   | Pruebas y evaluación        |
+| **PRO**         |   **$99 USD**  | Profesionales y consultores |
+| **TEAM**        | **$349 USD**   | Equipos de seguridad        |
+| **Enterprise**  | **$999 USD**   | Organizaciones grandes      |
+```
 ### ⭐ PRO — $99 USD
 
 - Escaneos ilimitados
 - 1 equipo activo
 - Reportes HTML + JSON + SARIF
 - Detección de secretos en JS
-- Soporte por correo: 48 horas
+- Soporte por correo: <48 horas
 
 ### 👥 TEAM — $349 USD
 
@@ -373,7 +356,7 @@ VORTEX está disponible en diferentes ediciones para adaptarse a profesionales, 
 - Hasta 5 equipos
 - Reportes HTML + JSON + SARIF
 - Detección de tokens expuestos en JS
-- Soporte por correo: 24 horas
+- Soporte por correo: <24 horas
 
 ### 🏢 Enterprise — $999 USD
 
@@ -507,16 +490,16 @@ Nunca incluyas en un Issue:
 
 ---
 
-# 🌐 ZERODAYS LAB
+
 
 **VORTEX Assessment Engine** es desarrollado por:
 
-**ZERODAYS LAB**  
+# 🌐 ZERODAYS LAB
 *Research & Development in Cybersecurity*
 
 🌐 https://zerodayslab.co
 
-### Soporte comercial
+### 📬 Contacto Soporte comercial
 
 Para consultas comerciales, licenciamiento o asistencia relacionada con el producto:
 
