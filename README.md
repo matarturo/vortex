@@ -106,6 +106,7 @@ Para una instalación nueva recomendamos:
 - **Ubuntu Server 22.04 LTS**
 - **Debian 13**
 - **RHEL 10.2**
+- **Rocky Linux 10.2**
 
 según los requisitos de tu infraestructura.
 
@@ -143,7 +144,7 @@ vortex --help
 vortex --version
 ```
 ```bash
-vortex status
+vortex --status
 ```
 Ejecutar tu primer Assessment
 
@@ -307,9 +308,9 @@ Esto permite utilizar VORTEX en:
 La edición **Community** está diseñada para que desarrolladores y profesionales de seguridad puedan evaluar VORTEX antes de adquirir una licencia comercial.
 
 - 10 escaneos / 7 días
-- SPA Discovery         ✅
-- Reportes HTML y JSON  ✅
-- Reportes SARIF        ❌
+- SPA Discovery           ✅
+- Reportes HTML           ✅
+- Reportes JSON + SARIF   ❌
 - Soporte por correo electronico: <72 horas
 
 ### Community está pensada para:
@@ -348,15 +349,15 @@ Gumroad proporciona un entorno de compra seguro y permite utilizar los métodos 
 |----------------|-------------:|--------------|---------------------------:|-----------------------------|
 | **Community**  | **$0 USD**   | Evaluación   | **1 equipo**               | Pruebas y evaluación        |
 | **PRO**        | **$99 USD**  | **Unico**    | **1 equipo**               | Profesionales y consultores |
-| **TEAM**       | **$349 USD** | **Unico**    | **Hasta 5 equipos**        | Equipos de seguridad        |
+| **TEAM**       | **$349 USD** | **Anual**    | **Hasta 5 equipos**        | Equipos de seguridad        |
 | **Enterprise** | **$999 USD** | **Anual**    | **Hasta 50 equipos**       | Organizaciones grandes      |
 
 ### ⭐ PRO — $99 USD
 
 - Escaneos ilimitados
 - 1 equipo activo
-- Reportes HTML + JSON + SARIF
-- Detección de secretos en JS
+- Reportes HTML + JSON
+- Detección de tockens expuestos en JS
 - Soporte por correo: <48 horas
 
 ### 👥 TEAM — $349 USD
@@ -396,7 +397,7 @@ vortex attach <SU_LICENSE_KEY_O_TOKEN>
 # ✨ Comprobar el estado de la licencia, la instalación y la activación ejecutando:
 
 ```
-vortex status
+vortex --status
 ```
 ---
 # 🧩 Ecosistema ZERODAYS LAB
@@ -540,19 +541,6 @@ Si pruebas VORTEX Community y consideras que el proyecto puede ser útil:
 - 🔀 Contribuye con ideas
 
 Tu feedback ayuda a definir el futuro de VORTEX.
-
----
-
-# 🌐 ZERODAYS LAB
-
-**VORTEX Assessment Engine** es desarrollado por:
-
-**ZERODAYS LAB**
-*Research & Development in Cybersecurity*
-
-🌐 https://zerodayslab.co
-
-📦 https://github.com/matarturo/vortex
 
 ---
 
