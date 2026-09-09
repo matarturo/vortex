@@ -471,9 +471,9 @@ echo " Launcher global:"
 echo "   $SYMLINK_PATH"
 echo
 echo " Comandos:"
-echo "   vortex status"
+echo "   vortex --status"
 echo "   vortex --version"
-echo "   vortex scan <objetivo>"
+echo "   vortex <objetivo>"
 echo
 echo " El VENV NO necesita activarse manualmente."
 echo " Chromium se ejecuta desde /opt/vortex/browsers."
