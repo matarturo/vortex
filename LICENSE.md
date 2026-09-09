@@ -4,7 +4,7 @@
 **VORTEX ASSESSMENT ENGINE**  
 **AUTOR / PROPIETARIO:** (Dr. Arturo Mata)  
 **AÑO DE CREACIÓN:** 2026  
-**Última actualización:** 07/08/2026
+**Última actualización:** 09/09/2026
 
 ---
 
@@ -14,7 +14,7 @@ LEA DETENIDAMENTE ESTE ACUERDO ANTES DE INSTALAR, DESCOMPRIMIR O UTILIZAR EL PRO
 ---
 
 ## 1. OTORGAMIENTO DE LICENCIA Y PROPIEDAD INTELECTUAL
-El Autor (**ZERODAYS LAB**) otorga por medio del presente documento una licencia limitada, no exclusiva, intransferible y revocable para utilizar el binario compilado de **VORTEX** exclusivamente bajo el nivel de suscripción adquirido (**Community**, **PRO**, **TEAM** o **Enterprise**), y sujeto al número de equipos autorizados especificado en dicho nivel.
+El Autor otorga por medio del presente documento una licencia limitada, no exclusiva, intransferible y revocable para utilizar el binario compilado de **VORTEX** exclusivamente bajo el nivel de suscripción adquirido (**Community**, **PRO**, **TEAM**, **Enterprise**, **PMA*), y sujeto al número de equipos autorizados especificado en dicho nivel.
 
 Todo el código fuente, la lógica de negocio, la arquitectura, el diseño, los algoritmos y los binarios protegidos son propiedad intelectual exclusiva del Autor y están protegidos por las leyes internacionales de propiedad intelectual y derechos de autor. Queda estrictamente prohibida la ingeniería inversa, descompilación, desensamblaje, alteración o intento de extracción del código protegido por cualquier medio técnico.
 
@@ -62,7 +62,7 @@ Al momento de la terminación de la licencia, el usuario deberá cesar inmediata
 ---
 
 ## 6. REEMBOLSOS, DEVOLUCIONES Y TRANSACCIONES
-Todas las transacciones de compra, procesamiento de pagos, gestión de impuestos y solicitudes de devolución o reembolso asociadas a las licencias comerciales de **VORTEX** son gestionadas directamente por nuestro Merchant of Record autorizado, **Lemon Squeezy**.
+Todas las transacciones de compra, procesamiento de pagos, gestión de impuestos y solicitudes de devolución o reembolso asociadas a las licencias comerciales de **VORTEX** son gestionadas directamente por nuestros Merchant of Record autorizado, **Lemon Squeezy** y **Gumroad**.
 
 Los plazos, condiciones y políticas de reembolso se rigen estrictamente por los términos comerciales establecidos por dicha plataforma al momento de la adquisición de la licencia. Cualquier disputa sobre pagos o reembolsos deberá ser gestionada directamente a través del portal de Lemon Squeezy.
 
@@ -78,4 +78,4 @@ El Autor se reserva el derecho de actualizar o modificar estos términos de serv
 
 ---
 
-**Última actualización:** 07/08/2026
+**Última actualización:** 09/09/2026
