@@ -162,7 +162,7 @@ echo "[+] Nueva versión:"
 
 echo
 echo "[+] Licencia:"
-"$BINARY_PATH" status || true
+"$BINARY_PATH" --status || true
 
 echo
 echo "[+] Entorno preservado."
