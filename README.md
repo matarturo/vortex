@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://zerodayslab.co/imagenes/vortex.webp" width="240" alt="ARTURO MATA">
+  <img src="https://zerodayslab.co/imagenes/vortex.webp" width="240" alt="ZERODAY LAB">
 </p>
 
 <h1 align="center">VORTEX ASSESSMENT ENGINE</h1>
