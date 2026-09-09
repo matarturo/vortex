@@ -8,16 +8,21 @@ Si crees haber identificado una vulnerabilidad de seguridad en VORTEX, sus insta
 
 Las vulnerabilidades se investigan y corrigen, según su impacto y viabilidad técnica, en las versiones actualmente mantenidas de VORTEX.
 
-| Componente o edición | Estado de soporte |
-|---|---|
-| VORTEX Community — versión actual | Soportada |
-| VORTEX PRO — versión actual | Soportada |
-| VORTEX TEAM — versión actual | Soportada |
-| VORTEX Enterprise — versión actual | Soportada |
-| Versiones anteriores o fuera de mantenimiento | Evaluación limitada |
+| Componente o edición                           | Estado de soporte   |
+|------------------------------------------------|---------------------|
+| VORTEX Community — versión actual              | Soportada           |
+| VORTEX PRO — versión actual                    | Soportada           |
+| VORTEX TEAM — versión actual                   | Soportada           |
+| VORTEX Enterprise — versión actual             | Soportada           |
+| Versiones anteriores o fuera de mantenimiento  | Evaluación limitada |
 
-Si no estás seguro de la versión afectada, incluye la salida del siguiente comando en tu reporte:
+Si no estás seguro de la versión instalada, incluye la salida del siguiente comando desde tu terminal:
 
 ```bash
 vortex --version
+```
+Si no estás seguro del estado de tu licencia, incluye la salida del siguiente comando desde tu terminal:
+
+```bash
+vortex --status
 ```
