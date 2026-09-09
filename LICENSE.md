@@ -2,7 +2,7 @@
                                            ACUERDO DE LICENCIA DE SOFTWARE PROPIETARIO
 
 **VORTEX ASSESSMENT ENGINE**  
-**AUTOR / PROPIETARIO:** ZERODAYS LAB (Dr. Arturo Mata)  
+**AUTOR / PROPIETARIO:** (Dr. Arturo Mata)  
 **AÑO DE CREACIÓN:** 2026  
 **Última actualización:** 07/08/2026
 
