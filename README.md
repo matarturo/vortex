@@ -74,6 +74,22 @@ VORTEX utiliza una arquitectura **self-hosted**, diseñada para ejecutarse dentr
 └───────────────────────────────────┘
 ```
 
+```text
+┌──────────────────────────────────────┐
+│          TU INFRAESTRUCTURA          │
+│                                      │
+│   ┌──────────────────────────────┐   │
+│   │    VORTEX Assessment         │   │
+│   │         Engine               │   │
+│   └──────────────┬───────────────┘   │
+│                  │                   │
+│                  ▼                   │
+│          WEB APPLICATION             │
+│              TARGET                  │
+│                                      │
+└──────────────────────────────────────┘
+```
+
 
 ---
 
