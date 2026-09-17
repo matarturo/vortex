@@ -139,7 +139,9 @@ Soporte y troubleshooting
 ¿Encontraste un problema? Consulta nuestra guía de troubleshooting y los recursos oficiales:
 
 · 📚 Documentación y guía de instalación: https://zerodayslab.co/docs/instalar.php
+
 · 🛠️ Tips de troubleshooting: https://zerodayslab.co/docs
+
 · 🐛 Issues en GitHub: https://github.com/matarturo/vortex/issues
 
 Al reportar un problema, incluye siempre la salida de:
