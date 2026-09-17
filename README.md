@@ -58,7 +58,7 @@ VORTEX puede descubrir rutas y recursos de una aplicación, analizar recursos Ja
 
 VORTEX utiliza una arquitectura **self-hosted**, diseñada para ejecutarse dentro del entorno del usuario.
 
-
+```
 ┌───────────────────────────────────┐
 │        TU INFRAESTRUCTURA               │
 │                                         │
@@ -66,13 +66,13 @@ VORTEX utiliza una arquitectura **self-hosted**, diseñada para ejecutarse dentr
 │   │   VORTEX Assessment            │    │
 │   │        Engine                  │    │
 │   └─────────────┬─────────────┘    │
-│                    │                    │
-│                    ▼                    │
+│                   │                    │
+│                   ▼                    │
 │             WEB APPLICATION             │
 │                  TARGET                 │
 │                                         │
 └───────────────────────────────────┘
-
+```
 
 
 ---
