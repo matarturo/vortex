@@ -99,9 +99,18 @@ VORTEX ha sido probado por ZERODAYS LAB en los siguientes entornos:
 | Red hat Entreprise Linux (RHEL) |      10.2         | ✅ Validado  |
 
 ```
-### Recomendación para entornos de prueba y producción
+# Recomendación para entornos de prueba y producción
 
-Para entornos de prueba y producción, se recomienda desplegar VORTEX sobre bare metal con Ubuntu Server, Debian o RHEL. Esta recomendación responde a la filosofía self-hosted del producto: el motor reside en el mismo servidor donde vive la aplicación objetivo, sin capas de virtualización intermedias, lo que garantiza:
+### Recomendación de despliegue
+
+Para una instalación nueva, se recomienda desplegar VORTEX sobre bare metal con las siguientes distribuciones empresariales:
+
+· Ubuntu Server 22.04 LTS
+· Debian 13
+· RHEL 10.2
+· Rocky Linux 10.2
+
+Esta recomendación responde a la filosofía self-hosted del producto: el motor reside en el mismo servidor donde vive la aplicación objetivo, sin capas de virtualización intermedias, lo que garantiza:
 
 · Acceso directo al hardware: el hw_id se genera de forma estable a partir del UUID del sistema, sin abstracciones de hipervisores.
 · Rendimiento predecible: sin overhead de virtualización, lo cual es crítico para pruebas de inyección time-based.
@@ -124,6 +133,8 @@ sudo vortex attach <TOKEN>
 
 Para entornos de producción, se recomienda encarecidamente usar las distribuciones empresariales validadas.
 
+---
+
 Soporte y troubleshooting
 
 ¿Encontraste un problema? Consulta nuestra guía de troubleshooting y los recursos oficiales:
@@ -141,21 +152,6 @@ vortex --status
 ```
 
 ---
-
-### Recomendación
-
-Para una instalación nueva recomendamos:
-
-- **Ubuntu Server 22.04 LTS**
-- **Debian 13**
-- **RHEL 10.2**
-- **Rocky Linux 10.2**
-
-según los requisitos de tu infraestructura.
-
-Las pruebas cubren instalación, ejecución del motor, gestión de licencias y actualización del producto.
-
-**Ojo:** si el repositorio no es exactamente `matarturo/vortex`, cambia esa URL por la real.
 
 # ⚡ Instalación rápida
 
@@ -192,7 +188,7 @@ vortex --status
 Ejecutar tu primer Assessment
 
 ```bash
-vortex --local --http-port
+vortex --local --port [PORT_NUMBER]
 ```
 
 ```bash
@@ -216,8 +212,8 @@ Una evaluación típica con VORTEX sigue este flujo:
                        │
                        ▼
               ┌─────────────────┐
-              │     VORTEX      │
-              │     Crawler     │
+              │     VORTEX         │
+              │     Crawler        │
               └────────┬────────┘
                        │
                        ▼
@@ -231,9 +227,9 @@ Una evaluación típica con VORTEX sigue este flujo:
                        │
                        ▼
               ┌─────────────────┐
-              │    RESULTS      │
+              │    RESULTS         │
               └────────┬────────┘
-                       │
+                        │
               ┌────────┼────────┐
               ▼        ▼        ▼
             HTML      JSON     SARIF
