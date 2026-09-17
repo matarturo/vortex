@@ -99,6 +99,49 @@ VORTEX ha sido probado por ZERODAYS LAB en los siguientes entornos:
 | Red hat Entreprise Linux (RHEL) |      10.2         | ✅ Validado  |
 
 ```
+### Recomendación para entornos de prueba y producción
+
+Para entornos de prueba y producción, se recomienda desplegar VORTEX sobre bare metal con Ubuntu Server, Debian o RHEL. Esta recomendación responde a la filosofía self-hosted del producto: el motor reside en el mismo servidor donde vive la aplicación objetivo, sin capas de virtualización intermedias, lo que garantiza:
+
+· Acceso directo al hardware: el hw_id se genera de forma estable a partir del UUID del sistema, sin abstracciones de hipervisores.
+· Rendimiento predecible: sin overhead de virtualización, lo cual es crítico para pruebas de inyección time-based.
+· Aislamiento natural: cada cliente ejecuta su instancia en su propio servidor dedicado.
+
+Nota: El uso de VORTEX en máquinas virtuales (VirtualBox, VMware) es funcional y adecuado para pruebas, pero puede introducir ligeras variaciones en la lectura del hardware. Para entornos empresariales, se recomienda bare metal.
+
+Limitaciones en distribuciones forenses (Kali, Parrot)
+
+Las distribuciones orientadas a forense y pentesting, como Kali Linux, aplican un hardening por defecto que restringe la lectura de /sys/class/dmi/id/product_uuid a root. Esto significa que el hw_id puede no generarse correctamente cuando VORTEX se ejecuta sin privilegios elevados, arrojando UNKNOWN-HARDWARE-ID como fallback defensivo.
+
+Esto no es un fallo de VORTEX, sino una decisión de diseño de la propia distribución: Kali prioriza no exponer información de hardware a usuarios no privilegiados. Ubuntu, Debian, RHEL y Rocky no aplican esta restricción por defecto.
+
+Si necesitas ejecutar VORTEX en Kali para pruebas puntuales, usa sudo:
+
+```bash
+sudo vortex --show-hwid
+sudo vortex attach <TOKEN>
+```
+
+Para entornos de producción, se recomienda encarecidamente usar las distribuciones empresariales validadas.
+
+Soporte y troubleshooting
+
+¿Encontraste un problema? Consulta nuestra guía de troubleshooting y los recursos oficiales:
+
+· 📚 Documentación y guía de instalación: https://zerodayslab.co/docs/instalar.php
+· 🛠️ Tips de troubleshooting: https://zerodayslab.co/docs
+· 🐛 Issues en GitHub: https://github.com/matarturo/vortex/issues
+
+Al reportar un problema, incluye siempre la salida de:
+
+```bash
+vortex --version
+vortex --show-hwid
+vortex --status
+```
+
+---
+
 ### Recomendación
 
 Para una instalación nueva recomendamos:
