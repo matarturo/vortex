@@ -43,6 +43,37 @@ if [[ ! -x "$BINARY_PATH" ]]; then
     exit 1
 fi
 
+# ==============================================================================
+# 1.1 VALIDAR DEPENDENCIAS
+# ==============================================================================
+
+if ! command -v jq &>/dev/null; then
+    echo "[-] Error: se requiere 'jq' para procesar el manifiesto."
+    echo
+    echo "    Instálalo según tu distribución:"
+    echo "      Debian/Ubuntu/Kali:  sudo apt install jq"
+    echo "      RHEL/Rocky/CentOS:   sudo yum install jq"
+    echo "      Fedora:              sudo dnf install jq"
+    echo "      Arch/Manjaro:        sudo pacman -S jq"
+    echo
+    exit 1
+fi
+
+if ! command -v curl &>/dev/null; then
+    echo "[-] Error: se requiere 'curl'."
+    exit 1
+fi
+
+if ! command -v sha256sum &>/dev/null; then
+    echo "[-] Error: se requiere 'sha256sum' (coreutils)."
+    exit 1
+fi
+
+if ! command -v file &>/dev/null; then
+    echo "[-] Error: se requiere 'file'."
+    exit 1
+fi
+
 echo "============================================================="
 echo " VORTEX - Patch Manager"
 echo "============================================================="
@@ -61,7 +92,21 @@ CURRENT_VERSION="$(
 )"
 
 if [[ -z "$CURRENT_VERSION" ]]; then
-    echo "[-] No fue posible determinar la versión instalada."
+    echo "[-] El binario no responde a '--version'."
+    echo
+    echo "    Posibles causas:"
+    echo "      - El binario está corrupto"
+    echo "      - La licencia está en un estado inconsistente"
+    echo "      - El binario fue manipulado"
+    echo
+    echo "    Solución sugerida:"
+    echo "      1. Verificar manualmente:  $BINARY_PATH --version"
+    echo "      2. Si falla, revisar:      /etc/vortex/license.json"
+    echo "      3. Si persiste, reinstalar: curl -sSL -o install.sh \\"
+    echo "         https://raw.githubusercontent.com/matarturo/vortex/main/install.sh"
+    echo "         chmod +x install.sh && sudo ./install.sh"
+    echo
+    echo "[-] Patch abortado. El entorno NO fue modificado."
     exit 1
 fi
 
@@ -243,7 +288,7 @@ echo "[+] Versión:"
 
 echo
 echo "[+] Licencia:"
-"$BINARY_PATH" status || true
+"$BINARY_PATH" --status || true
 
 echo
 echo "[+] Entorno preservado."
